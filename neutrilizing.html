@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>The Abyss</title>
+    <style>
+        body {
+            background-color: darkred;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        #myCanvas {
+            border: 1px solid none;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="myCanvas" width="1400" height="700"></canvas>
+    <script>
+        var canvas = document.getElementById('myCanvas');
+        var ctx = canvas.getContext('2d');
+        ctx.strokeStyle = 'blach';
+        var b = 3333;
+        var x = canvas.width / 2;
+        var y = canvas.height / 2;
+        var scale = 0.0099; // smaller scale factor for the spiral
+        ctx.beginPath();
+        ctx.moveTo(x, y);
+        function draw() {
+            if (b > 0) {
+                x += Math.cos(b) * b * 0.9 * scale;
+                y += Math.sin(b) * b * 0.9 * scale;
+                ctx.lineTo(x, y);
+                ctx.stroke();
+                b--;
+                requestAnimationFrame(draw);
+            }
+        }
+        draw();
+    </script>
+</body>
+</html>
+
